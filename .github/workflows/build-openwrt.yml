@@ -8,8 +8,8 @@
 name: Build OpenWrt
 
 on: 
-  release:
-    types: [published]
+#  release:
+#    types: [published]
   push:
     paths:
       - '.config'
@@ -104,16 +104,15 @@ jobs:
 #        sha256sum P3TERX* > sha256sums.txt
 #        cd openwrt/bin && zip -r $GITHUB_WORKSPACE/OpenWrt-Newifi-D2.zip *
 
-#    - name: Upload to release
-#      uses: meeDamian/github-release@1.0
-#      with:
-#        token: ${{ secrets.OPENWRT_TOKEN }}
-#        gzip: false
-#        files: >
-#          OpenWrt-Newifi-D2.zip
-#          sha256sums.txt
-#          P3TERX-openwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
-#        allow_override: true
+    - name: Upload to release
+      uses: meeDamian/github-release@1.0
+      with:
+        token: ${{ secrets.OPENWRT_TOKEN }}
+        files: >
+          openwrt/bin/targets/**/openwrt*
+          openwrt/bin/targets/**/sha256sums
+        allow_override: true
+
     - name: Generate tag
       run: |
         echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d")"
