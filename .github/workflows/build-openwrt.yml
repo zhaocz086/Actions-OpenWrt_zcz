@@ -12,7 +12,7 @@ on:
     types: [published]
   push:
     paths:
-    - '.config'
+      - '.config'
 #  push:
 #    branches: 
 #      - master
