@@ -112,17 +112,3 @@ jobs:
           openwrt/bin/targets/**/openwrt*
           openwrt/bin/targets/**/sha256sums
         allow_override: true
-
-    - name: Generate tag
-      run: |
-        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d")"
-
-    - name: Create release
-      uses: meeDamian/github-release@1.0
-      with:
-        token: ${{ secrets.OPENWRT_TOKEN }}
-        body: Automatic Build | 自动编译
-        files: >
-          openwrt/bin/targets/**/openwrt*
-          openwrt/bin/targets/**/sha256sums
-        allow_override: true
