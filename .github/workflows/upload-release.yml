@@ -21,7 +21,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: Upload to release
-      uses: meeDamian/github-release@v1.0
+      uses: meeDamian/github-release@1.0
       with:
         token: ${{ secrets.OPENWRT_TOKEN }}
         gzip: folders
