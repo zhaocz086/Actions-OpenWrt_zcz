@@ -105,13 +105,17 @@ jobs:
         echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d")"
 
     - name: Upload to release
+      run: |
+        mkdir Release_file
+        find openwrt/bin openwrt*.img -exec mv {} ./Release_file \;
+        find openwrt/bin sha256sums   -exec mv {} ./Release_file \;
+        rm Release/*rootfs*
+        echo ::set-env name=RELEASE_FILES::${file(a.out)}
       uses: meeDamian/github-release@1.0
       with:
         token: ${{ secrets.OPENWRT_TOKEN }}
         body: Automatic Build | 自动编译
-        gzip: folders
-        files: >
-          openwrt/bin/targets/**openwrt*
-          openwrt/bin/targets/**sha*
+        gzip: false
+        files: zcz:Release_file/
         allow_override: true
 
