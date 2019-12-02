@@ -27,7 +27,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@master
 
     - name: Initialization environment
       env:
@@ -98,17 +98,4 @@ jobs:
       with:
         name: OpenWrt
         path: openwrt/bin
-#    - name: Organize files
-#      run: |
-#        cp openwrt/bin/targets/ramips/mt7621/openwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin P3TERX-openwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin
-#        sha256sum P3TERX* > sha256sums.txt
-#        cd openwrt/bin && zip -r $GITHUB_WORKSPACE/OpenWrt-Newifi-D2.zip *
 
-    - name: Upload to release
-      uses: meeDamian/github-release@1.0
-      with:
-        token: ${{ secrets.OPENWRT_TOKEN }}
-        files: >
-          openwrt/bin/targets/**/openwrt*
-          openwrt/bin/targets/**/sha256sums
-        allow_override: true

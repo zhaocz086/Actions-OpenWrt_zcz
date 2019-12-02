@@ -1,0 +1,31 @@
+#=================================================
+#   Description: Build OpenWrt using GitHub Actions
+#   Lisence: MIT
+#   Author: P3TERX
+#   Blog: https://p3terx.com
+#=================================================
+
+name: Build OpenWrt
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Upload to release
+      uses: meeDamian/github-release@v1.0
+      with:
+        token: ${{ secrets.OPENWRT_TOKEN }}
+        gzip: folders
+        files: >
+          openwrt/bin/targets/**openwrt*
+          openwrt/bin/targets/sha*
+        allow_override: true
