@@ -18,7 +18,7 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@master
 
     - name: Upload to release
       uses: meeDamian/github-release@v1.0
