@@ -99,3 +99,23 @@ jobs:
         name: OpenWrt
         path: openwrt/bin
 
+    - name: Generate tag
+      run: |
+        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d")"
+
+    - name: Create release
+      uses: meeDamian/github-release@1.0
+      with:
+        token: ${{ secrets.OPENWRT_TOKEN }}
+        body: Automatic Build | 自动编译
+
+    - name: Upload to release
+      uses: meeDamian/github-release@1.0
+      with:
+        token: ${{ secrets.OPENWRT_TOKEN }}
+        gzip: folders
+        files: >
+          openwrt/bin/targets/**openwrt*
+          openwrt/bin/targets/**sha*
+        allow_override: true
+
