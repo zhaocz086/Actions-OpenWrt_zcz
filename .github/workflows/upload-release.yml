@@ -12,7 +12,7 @@ on:
     types: [published]
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-18.04
 
     steps:
