@@ -27,5 +27,5 @@ jobs:
         gzip: folders
         files: >
           openwrt/bin/targets/**openwrt*
-          openwrt/bin/targets/sha*
+          openwrt/bin/targets/**sha*
         allow_override: true
