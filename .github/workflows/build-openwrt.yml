@@ -11,8 +11,8 @@ on:
 #  release:
 #    types: [published]
   push:
-    paths:
-      - '.config'
+#    paths:
+#      - '.config'
 #  push:
 #    branches: 
 #      - master
@@ -89,6 +89,7 @@ jobs:
         ls -l
         mkdir -p openwrt/bin/aaa/bbb
         touch openwrt/bin/aaa/bbb/openwrt123.img
+        ls -l openwrt/bin/aaa/bbb
         find openwrt/bin openwrt*.img -exec mv {} Release_file \;
         find openwrt/bin sha256sums   -exec mv {} Release_file \;
         rm Release/*rootfs*
