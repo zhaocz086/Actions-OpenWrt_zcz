@@ -71,9 +71,6 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e .config ] && mv .config openwrt
         chmod +x diy.sh
-        cd openwrt
-        ../diy.sh
-        make defconfig
 
     - name: Generate tag
       run: |
