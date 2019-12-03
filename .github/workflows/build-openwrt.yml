@@ -113,7 +113,7 @@ jobs:
       with:
         token: ${{ secrets.OPENWRT_TOKEN }}
         body: Automatic Build | 自动编译
-        gzip: false
+        gzip: folders
         files: zcz:Release_file/
         allow_override: true
 
