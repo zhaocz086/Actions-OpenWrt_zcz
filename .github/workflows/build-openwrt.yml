@@ -12,7 +12,7 @@ on:
 #    types: [published]
   push:
     paths:
-      - *
+      - '*.*'
 #  push:
 #    branches: 
 #      - master
