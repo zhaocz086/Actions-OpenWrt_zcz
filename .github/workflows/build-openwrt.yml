@@ -104,9 +104,6 @@ jobs:
       run: |
         echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d")"
         mkdir Release_file
-        ls -l
-        mkdir -p openwrt/bin/aaa/bbb
-        touch openwrt/bin/aaa/bbb/openwrt123.img
         find openwrt/bin -name openwrt*.img -exec mv {} Release_file \;
         find openwrt/bin -name sha256sums   -exec mv {} Release_file \;
         rm Release/*rootfs*
