@@ -106,7 +106,7 @@ jobs:
         mkdir Release_file
         find openwrt/bin -name openwrt*.img -exec mv {} Release_file \;
         find openwrt/bin -name sha256sums   -exec mv {} Release_file \;
-        rm Release/*rootfs*
+        rm Release_file/*rootfs*
 
     - name: Upload to release
       uses: meeDamian/github-release@1.0
