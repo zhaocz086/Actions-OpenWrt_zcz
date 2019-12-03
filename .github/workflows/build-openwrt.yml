@@ -11,9 +11,8 @@ on:
 #  release:
 #    types: [published]
   push:
-    *
-#    paths:
-#      - '.config'
+    paths:
+      - '*'
 #  push:
 #    branches: 
 #      - master
