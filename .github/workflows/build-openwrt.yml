@@ -82,24 +82,6 @@ jobs:
         ../diy.sh
         make defconfig
 
-    - name: Download package
-      run: |
-        #cd openwrt && make download -j8
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
-
-    - name: Build
-      run: |
-        cd openwrt
-        echo -e "$(nproc) thread build."
-        make -j$(nproc) V=s
-
-    - name : Upload artifact
-      uses: actions/upload-artifact@master
-      with:
-        name: OpenWrt
-        path: openwrt/bin
-
     - name: Generate tag
       run: |
         echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d")"
