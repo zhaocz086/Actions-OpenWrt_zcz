@@ -118,6 +118,6 @@ jobs:
         token: ${{ secrets.OPENWRT_TOKEN }}
         body: Automatic Build | 自动编译 x86-pure-cups
         gzip: false
-        files: x86-pure-cups:Release_file.tar.gz
+        files: x86-cups:Release_file.tar.gz
         allow_override: true
 
