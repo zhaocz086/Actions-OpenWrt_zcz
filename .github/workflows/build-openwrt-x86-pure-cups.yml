@@ -74,12 +74,15 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: Load custom configuration
+      env:
+        CONFIG_FILE: '.config.x86-pure-cups'
+        DIY_SH: 'diy.sh'
       run: |
         [ -e files ] && mv files openwrt/files
-        [ -e .config.x86-pure-cups ] && mv .config.x86-pure-cups openwrt/.config
-        chmod +x diy.sh
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x $DIY_SH
         cd openwrt
-        ../diy.sh
+        ../$DIY_SH
         make defconfig
 
     - name: Download package

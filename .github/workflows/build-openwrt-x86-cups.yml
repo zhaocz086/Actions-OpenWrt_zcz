@@ -12,7 +12,7 @@ on:
 #    types: [published]
   push:
     paths:
-      - '.config'
+      - '.config.x86-cups'
 #  push:
 #    branches: 
 #      - master
@@ -75,14 +75,14 @@ jobs:
 
     - name: Load custom configuration
       env:
-        CONFIG_FILE: '.config'
+        CONFIG_FILE: '.config.x86-cups'
         DIY_SH: 'diy.sh'
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_SH
         cd openwrt
-        ../$DIY_SH        
+        ../$DIY_SH
         make defconfig
 
     - name: Download package
@@ -110,13 +110,14 @@ jobs:
         find openwrt/bin -name openwrt*.img -exec mv {} Release_file \;
         find openwrt/bin -name sha256sums   -exec mv {} Release_file \;
         rm Release_file/*rootfs*
+        tar czf Release_file.tar.gz Release_file
 
     - name: Upload to release
       uses: meeDamian/github-release@1.0
       with:
         token: ${{ secrets.OPENWRT_TOKEN }}
-        body: Automatic Build | 自动编译临时固件
-        gzip: folders
-        files: zcz:Release_file/
+        body: Automatic Build | 自动编译 x86-pure-cups
+        gzip: false
+        files: x86-pure-cups:Release_file.tar.gz
         allow_override: true
 
