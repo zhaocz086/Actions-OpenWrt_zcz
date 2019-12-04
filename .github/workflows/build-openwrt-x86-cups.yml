@@ -12,7 +12,7 @@ on:
 #    types: [published]
   push:
     paths:
-      - '.config.x86-cups'
+      - '.config-x86-cups'
 #  push:
 #    branches: 
 #      - master
@@ -76,7 +76,7 @@ jobs:
 
     - name: Load custom configuration
       env:
-        CONFIG_FILE: '.config.x86-cups'
+        CONFIG_FILE: '.config-x86-cups'
         DIY_SH: 'diy.sh'
       run: |
         [ -e files ] && mv files openwrt/files
