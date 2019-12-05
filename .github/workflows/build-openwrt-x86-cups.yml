@@ -107,12 +107,12 @@ jobs:
     - name: Generate tag
       run: |
         echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d")"
-        mkdir Release_file
-        find openwrt/bin -name openwrt*.img -exec mv {} Release_file \;
-        find openwrt/bin -name sha256sums   -exec mv {} Release_file \;
-        rm Release_file/*rootfs*
-        tar czf Release_file.tar.gz Release_file
-        ls -l Release_file.tar.gz
+        mkdir Release_files
+        find openwrt/bin -name openwrt*.img -exec mv {} Release_files \;
+        find openwrt/bin -name sha256sums   -exec mv {} Release_files \;
+        rm Release_files/*rootfs*
+        tar czf Release_files.tar.gz Release_files
+        ls -l Release_files.tar.gz
 
     - name: Upload to release
       uses: meeDamian/github-release@1.0
@@ -120,6 +120,7 @@ jobs:
         token: ${{ secrets.OPENWRT_TOKEN }}
         body: Automatic Build | 自动编译 x86-pure-cups
         gzip: false
-        files: x86-cups:Release_file.tar.gz
+        files: >
+          x86-cups:Release_files.tar.gz
         allow_override: true
 
