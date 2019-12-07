@@ -106,7 +106,7 @@ jobs:
 
     - name: Generate tag
       run: |
-        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d : %H时")"
+        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d %H时")"
         mkdir Release_files
         find openwrt/bin -name openwrt*.img -exec mv {} Release_files \;
         find openwrt/bin -name sha256sums   -exec mv {} Release_files \;
@@ -116,7 +116,7 @@ jobs:
       uses: meeDamian/github-release@1.0
       with:
         token: ${{ secrets.OPENWRT_TOKEN }}
-        body: Automatic Build | 自动编译 x86-pure-cups
+        body: Automatic Build | 自动编译 x86-cups
         gzip: folders
         files: x86-cups:Release_files/
         allow_override: true
