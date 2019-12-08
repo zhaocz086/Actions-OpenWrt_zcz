@@ -12,7 +12,7 @@ on:
 #    types: [published]
   push:
     paths:
-      - '.config.x86-pure-cups'
+      - '.config-x86-pure-cups'
 #  push:
 #    branches: 
 #      - master
@@ -67,7 +67,7 @@ jobs:
     - name: Update feeds
       run: |
         cd openwrt
-        echo "src-git cups https://github.com/zhaocz/lede-cups.git" >> feeds.conf.default
+        echo "src-git cups https://github.com/Gr4ffy/lede-cups.git" >> feeds.conf.default
         ./scripts/feeds update -a
 
     - name: Install feeds
@@ -105,7 +105,7 @@ jobs:
 
     - name: Generate tag
       run: |
-        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d %H时")"
+        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d.%H")"
         mkdir Release_file
         find openwrt/bin -name openwrt*.img -exec mv {} Release_file \;
         find openwrt/bin -name sha256sums   -exec mv {} Release_file \;
