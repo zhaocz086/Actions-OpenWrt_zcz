@@ -106,7 +106,7 @@ jobs:
 
     - name: Generate tag
       run: |
-        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d %H时")"
+        echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d %H")时"
         mkdir Release_files
         find openwrt/bin -name openwrt*.img -exec mv {} Release_files \;
         find openwrt/bin -name sha256sums   -exec mv {} Release_files \;
