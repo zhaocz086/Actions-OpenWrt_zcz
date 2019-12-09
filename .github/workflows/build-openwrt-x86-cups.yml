@@ -29,6 +29,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
+
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -107,8 +110,6 @@ jobs:
     - name: Generate tag
       run: |
         echo ::set-env name=RELEASE_TAG::"$(TZ=UTC-8 date +"%Y.%m.%d.%H")"
-        echo ::set-env name=RELEASE_123::"$(TZ=UTC-8 date +"%Y.%m.%d %H  11")"
-        env | grep RELEASE
         mkdir Release_files
         find openwrt/bin -name openwrt*.img -exec mv {} Release_files \;
         find openwrt/bin -name sha256sums   -exec mv {} Release_files \;
