@@ -67,7 +67,7 @@ jobs:
     - name: Update feeds
       run: |
         cd openwrt
-        echo "src-git cups https://github.com/zhaocz/lede-cups.git" >> feeds.conf.default
+        echo "src-git cups https://github.com/Gr4ffy/lede-cups.git" >> feeds.conf.default
         ./scripts/feeds update -a
 
     - name: Install feeds

@@ -75,7 +75,7 @@ jobs:
 
     - name: Load custom configuration
       env:
-        CONFIG_FILE: '.config.x86-pure-cups'
+        CONFIG_FILE: '.config-x86-pure-cups'
         DIY_SH: 'diy.sh'
       run: |
         [ -e files ] && mv files openwrt/files
